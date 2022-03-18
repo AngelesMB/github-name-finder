@@ -2,7 +2,6 @@ const callToApi = (URL, username) => {
   return fetch(`${URL}/${username}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       if (data.message === "Not Found") {
         return "User not found";
       } else {

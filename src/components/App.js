@@ -7,14 +7,28 @@ import Main from "./Main";
 function App() {
   const [username, setUsername] = useState("");
   const [searchIsValid, setSearchIsValid] = useState(false);
-  const [realName, setRealName] = useState("Lola");
+  const [realName, setRealName] = useState("cmon");
+  const [message, setMessage] = useState("");
 
   const updateUsername = (value) => {
-    return setUsername(value);
+    setMessage("");
+    setUsername(value);
   };
 
   const updateSearchIsValid = () => {
-    return setSearchIsValid(true);
+    setSearchIsValid(true);
+  };
+
+  const updateMessage = () => {
+    if (realName === "User not found" && username === "") {
+      setMessage("Please, fill out the username field");
+    } else if (realName === "User not found") {
+      setMessage("Username not found :(");
+    } else if (realName === "Name not found") {
+      setMessage("We could not find the user's real name :(");
+    } else {
+      setMessage("Blocks");
+    }
   };
 
   const URL = "https://api.github.com/users";
@@ -23,6 +37,7 @@ function App() {
     if (searchIsValid) {
       callToApi(URL, username).then((response) => {
         setRealName(response);
+        updateMessage();
         setSearchIsValid(false);
       });
     }
@@ -36,6 +51,7 @@ function App() {
         updateSearchIsValid={updateSearchIsValid}
         username={username}
         realName={realName}
+        message={message}
       ></Main>
     </div>
   );

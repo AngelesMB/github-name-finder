@@ -20,6 +20,7 @@ const Form = ({ realname, updateUsername, updateSearchIsValid }) => {
         onChange={handleUsername}
       />
       <input
+        className="form__button"
         type="submit"
         value="Find user's real name"
         onClick={handleFindClick}

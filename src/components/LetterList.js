@@ -1,18 +1,19 @@
+import "../styles/LetterList.scss";
 import LetterItem from "./LetterItem";
+import MessageItem from "./MessageItem";
 
-const LetterList = ({ username, realName }) => {
+const LetterList = ({ realName, message }) => {
   const lettersHtml = realName.split("").map((eachLetter, index) => {
     return <LetterItem key={index} letter={eachLetter}></LetterItem>;
   });
+
   const renderListItemsHtml = () => {
-    if (realName === "User not found") {
-      return <li>Username not found</li>;
-    } else if (realName === "Name not found") {
-      return <li>We could not find {username}'s real name</li>;
-    } else {
+    if (message === "Blocks") {
       return lettersHtml;
+    } else {
+      return <MessageItem message={message}></MessageItem>;
     }
   };
-  return <ul>{renderListItemsHtml()}</ul>;
+  return <ul className="letter__list">{renderListItemsHtml()}</ul>;
 };
 export default LetterList;
