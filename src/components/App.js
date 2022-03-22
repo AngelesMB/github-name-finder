@@ -12,7 +12,7 @@ function App() {
 
   const updateUsername = (value) => {
     setMessage("");
-    setRealName("")
+    setRealName("");
     setUsername(value);
   };
 
@@ -30,15 +30,12 @@ function App() {
     if (searchIsValid) {
       callToApi(URL, username).then((response) => {
         if (response === "User not found") {
-          console.log("No existe usuario");
-          setMessage("User not found")
+          setMessage("User not found");
         }
         if (response !== "Name not found") {
           setRealName(response);
-          console.log(response)
         } else {
-          console.log("No existe el nombre");
-          setMessage("No Nombre");
+          setMessage("Name not found");
         }
         setSearchIsValid(false);
       });

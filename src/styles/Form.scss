@@ -1,13 +1,15 @@
 .form {
   color: white;
+  height: 250px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 30px;
   font-size: 18px;
-  gap: 10px;
   border: white solid 0.5px;
   border-radius: 5px;
   padding: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   &__input {
     border: none;
     border-radius: 5px;
