@@ -1,6 +1,6 @@
 import "../styles/Form.scss";
 
-const Form = ({ realname, updateUsername, updateSearchIsValid }) => {
+const Form = ({ updateUsername, updateSearchIsValid }) => {
   const handleUsername = (ev) => {
     return updateUsername(ev.currentTarget.value);
   };

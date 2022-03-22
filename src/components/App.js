@@ -7,27 +7,20 @@ import Main from "./Main";
 function App() {
   const [username, setUsername] = useState("");
   const [searchIsValid, setSearchIsValid] = useState(false);
-  const [realName, setRealName] = useState("cmon");
+  const [realName, setRealName] = useState("");
   const [message, setMessage] = useState("");
 
   const updateUsername = (value) => {
     setMessage("");
+    setRealName("")
     setUsername(value);
   };
 
   const updateSearchIsValid = () => {
-    setSearchIsValid(true);
-  };
-
-  const updateMessage = () => {
-    if (realName === "User not found" && username === "") {
-      setMessage("Please, fill out the username field");
-    } else if (realName === "User not found") {
-      setMessage("Username not found :(");
-    } else if (realName === "Name not found") {
-      setMessage("We could not find the user's real name :(");
+    if (username !== "") {
+      setSearchIsValid(true);
     } else {
-      setMessage("Blocks");
+      setMessage("Please write something");
     }
   };
 
@@ -36,8 +29,17 @@ function App() {
   useEffect(() => {
     if (searchIsValid) {
       callToApi(URL, username).then((response) => {
-        setRealName(response);
-        updateMessage();
+        if (response === "User not found") {
+          console.log("No existe usuario");
+          setMessage("User not found")
+        }
+        if (response !== "Name not found") {
+          setRealName(response);
+          console.log(response)
+        } else {
+          console.log("No existe el nombre");
+          setMessage("No Nombre");
+        }
         setSearchIsValid(false);
       });
     }

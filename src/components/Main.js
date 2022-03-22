@@ -7,7 +7,7 @@ const Main = ({
   updateSearchIsValid,
   username,
   realName,
-  message
+  message,
 }) => {
   return (
     <main className="main">
